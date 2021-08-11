@@ -5,6 +5,10 @@ const mongoose = require("mongoose");
 const router = express.Router();
 const  MarkModel = mongoose.model("students")
 
+router.get("/add", (req, res)=> {
+    res.render("add-mark")
+})
+
 router.get("/list", (req, res)=> {
 
     //getting data
