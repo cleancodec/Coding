@@ -30,3 +30,5 @@ var MarkSchema = new mongoose.Schema({
         required : "Required"
     },
 })
+
+mongoose.model("students" , MarkSchema);

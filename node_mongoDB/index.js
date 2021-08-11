@@ -1,10 +1,18 @@
-const mongoose = require("mongoose");
+const connection = require("./model");
+const express = require("express");
+const application = express();
+const path = require("path");
+const ExpressHandlebars = require("express-handlebars");
+const bodyparser = require("body-parser");
 
-mongoose.connect("mongodb://localhost:27017/admin",{useNewUrlParser : true}, (error)=>{
-    if(!error){
-        console.log("Success Connected");
-    }
-    else{
-        console.log("Error in connecting to database");
-    }
+application.use(bodyparser.urlencoded({
+    extended : true
+}));    
+
+application.get("/", (req, res)=>{
+    res.send('<h1> Hellow World <h1>')
 })
+
+application.listen("3000", ()=> {
+    console.log("Server started");
+});
