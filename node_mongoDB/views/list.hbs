@@ -1,0 +1,25 @@
+<h1> Studnets</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>Subject 1</th>
+        <th>Subject 2</th>
+        <th>Subject 3</th>
+        <th>Subject 4</th>
+        <th>Subject 5</th>
+        <th>Subject 6</th>
+    </tr>
+    {{#each data}}
+    <tr>
+        <td>{{this.id}}</td>
+        <td>{{this.name}}</td>
+        <td>{{this.mark1}}</td>
+        <td>{{this.mark2}}</td>
+        <td>{{this.mark3}}</td>
+        <td>{{this.mark4}}</td>
+        <td>{{this.mark5}}</td>
+        <td>{{this.mark6}}</td>
+    </tr>
+    {{/each}}
+</table>

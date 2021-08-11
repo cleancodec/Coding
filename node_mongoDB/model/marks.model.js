@@ -1,34 +1,38 @@
 const mongoose = require("mongoose");
 
 var MarkSchema = new mongoose.Schema({
+    id :{
+        type : String ,
+        required : "Required"
+    },
     name :{
         type : String ,
         required : "Required"
     },
     mark1 :{
-        type : Number ,
+        type : String ,
         required : "Required"
     },
     mark2 :{
-        type : Number ,
+        type : String ,
         required : "Required"
     },
     mark3 :{
-        type : Number ,
+        type : String ,
         required : "Required"
     },
     mark4 :{
-        type : Number ,
+        type : String ,
         required : "Required"
     },
     mark5 :{
-        type : Number ,
+        type : String ,
         required : "Required"
     },
     mark6 :{
-        type : Number ,
+        type : String ,
         required : "Required"
     },
 })
 
-mongoose.model("Mark" , MarkSchema);
+mongoose.model("students" , MarkSchema);

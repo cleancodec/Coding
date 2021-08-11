@@ -3,15 +3,22 @@ const express = require("express");
 const mongoose = require("mongoose");
 
 const router = express.Router();
-const  MarkModel = mongoose.model("Mark")
+const  MarkModel = mongoose.model("students")
 
 router.get("/list", (req, res)=> {
+
+    //getting data
     MarkModel.find((err, docs)=> {
         if(!err)
         {
-            res.send("Marks Controller")
+            console.log(docs);
+            res.render("list", { data : docs });
         }
-    })
+        else
+        {
+            res.send("Error occures on routing");    
+        }
+    }).lean()
 });
 
 module.exports = router;
