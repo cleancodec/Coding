@@ -31,4 +31,4 @@ var MarkSchema = new mongoose.Schema({
     },
 })
 
-mongoose.model("students" , MarkSchema);
+mongoose.model("Mark" , MarkSchema);
