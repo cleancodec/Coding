@@ -21,6 +21,7 @@ app.post('/insert', async (req, res) => {
     const meals = new MealsModel({mealsName : mealName, daysSinceIAte : days});
     try {
         await meals.save();
+        res.send("inserted data");
     }catch(err)
     {
         console.log(err);
@@ -33,12 +34,30 @@ app.get('/read', async (req, res) => {
     MealsModel.find({}, (err, result) => {
         if(err)
         {
-            res.send(err)
+            res.send(err);
         }
 
         res.send(result);
     });
 });
+
+app.put('/update', async (req, res) => {
+    
+    const newMealName = req.body.newMealName
+    const id = req.body.id
+    try {
+       await MealsModel.findById(id,(err,updatedMeal) => {
+           updatedMeal.mealsName = newMealName;
+           updatedMeal.save();
+           res.send("Update");
+       })
+    }catch(err)
+    {
+        console.log(err);
+    }
+});
+
+
 
 app.listen(3001,()=>{
     console.log("Server running on  port 3001...");
