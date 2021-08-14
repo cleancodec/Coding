@@ -25,6 +25,10 @@ function App() {
     Axios.put("http://localhost:3001/update", {id: id, newMealName: newMealName});
   };
 
+  const deleteMeal = (id)=> {
+    Axios.delete(`http://localhost:3001/delete/${id}` );
+  };
+
   return (
     <div className="App">
       <h1>CURD APP</h1>
@@ -48,7 +52,7 @@ function App() {
               }}  
               />
             <button onClick= {() => updateMeal(val._id)}>Update</button>
-            <button>Delete</button>
+            <button onClick= {() => deleteMeal(val._id)}>Delete</button>
             {" "}
           </div>
           );

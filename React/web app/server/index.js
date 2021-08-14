@@ -57,7 +57,12 @@ app.put('/update', async (req, res) => {
     }
 });
 
+app.delete("/delete/:id", async (req, res) => {
+    const id =req.params.id;
 
+    await MealsModel.findByIdAndRemove(id).exec();
+    res.send("deleted");
+});
 
 app.listen(3001,()=>{
     console.log("Server running on  port 3001...");
