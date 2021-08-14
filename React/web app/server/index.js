@@ -25,7 +25,20 @@ app.post('/insert', async (req, res) => {
     {
         console.log(err);
     }
-})
+});
+
+app.get('/read', async (req, res) => {
+    
+    //MealsModel.find({ $where: {mealsName : " Apple"}})
+    MealsModel.find({}, (err, result) => {
+        if(err)
+        {
+            res.send(err)
+        }
+
+        res.send(result);
+    });
+});
 
 app.listen(3001,()=>{
     console.log("Server running on  port 3001...");
