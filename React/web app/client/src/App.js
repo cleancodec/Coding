@@ -3,6 +3,9 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 import Axios from 'axios'
 import './App.css';
+import Card from '@material-ui/core/Card';
+import { CardHeader } from '@material-ui/core';
+import CardContent from '@material-ui/core/CardContent';
 
 function App() {
 
@@ -10,6 +13,7 @@ function App() {
   const [days, setDays] = useState(0);
   const [newMealName, setNewMealName] = useState('')
   const [mealsList, setMealsList] = useState([])
+
 
   const styles = StyleSheet.create({
     screenContainer: {
@@ -42,6 +46,7 @@ function App() {
       style={[
         styles.appButtonContainer,
         size === "sm" && {
+          alignContent:'center',
           paddingHorizontal: 8,
           paddingVertical: 6,
           elevation: 6
@@ -77,13 +82,36 @@ function App() {
 
   return (
     <div className="App">
-      <h1>CURD APP</h1>
-        <label>Meal Name :</label>
-        <input type = "text" onChange = {(event) =>{setMealName(event.target.value);}}/>
-        <label>Days since order :</label>
-        <input type = "number" onChange = {(event) =>{setDays(event.target.value);}}/>
-        <AppButton onPress = {addToList} title="Add to List" size="sm" backgroundColor="#000000" />;
-
+      <div><h3><lable className="title" >CURD Application</lable></h3></div><br></br>
+      <Card>
+        <CardHeader title = "Add items"/>
+        <CardContent>
+          <div>
+            <label htmlFor="code ">Product Code </label>
+            <input type = "text" placeholder="######" />
+          </div>
+          <div>
+            <label htmlFor="mealname ">Meal Name </label>
+            <input type = "text" placeholder="meal" onChange = {(event) =>{setMealName(event.target.value);}}/>
+          </div>
+          <div>
+            <label htmlFor="price ">Price </label>
+            <input type = "number" placeholder="$0.00" />
+          </div>
+          <div>
+            <label htmlFor="discount ">Discount </label>
+            <input type = "number" placeholder="$0.00" />
+          </div>
+          <div>
+            <label htmlFor="days ">Last Ordered</label>
+            <input type = "number" placeholder="0 Days" onChange = {(event) =>{setDays(event.target.value);}}/>
+          </div>
+          <div align="center">  
+            <AppButton  onPress = {addToList} title="Add to List" size="sm" backgroundColor="#000000" />;
+          </div>
+        </CardContent>
+      </Card>
+      
         <h1>Meals List</h1>
         {mealsList.map((val, key)=> {
           return (

@@ -9,6 +9,7 @@ const MealsSchema = new mongoose.Schema({
         type : Number,
         required : true
     },
+    
 });
 
 const Meals = mongoose.model("Meals", MealsSchema)
