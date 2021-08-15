@@ -47,13 +47,20 @@ app.get('/read', async (req, res) => {
 app.put('/update', async (req, res) => {
     
     const newMealName = req.body.newMealName
+    const newPrice = req.body.newPrice
+    const newDiscount = req.body.newDiscount
+    const newDay = req.body.newDay
     const id = req.body.id
     try {
        await MealsModel.findById(id,(err,updatedMeal) => {
            updatedMeal.mealsName = newMealName;
+           updatedMeal.price = newPrice;
+           updatedMeal.discount = newDiscount;
+           updatedMeal.days = newDay;
            updatedMeal.save();
            res.send("Update");
        })
+       
     }catch(err)
     {
         console.log(err);

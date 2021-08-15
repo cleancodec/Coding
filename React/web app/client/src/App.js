@@ -78,7 +78,7 @@ function App() {
   const addToList = () =>{
     console.log(mealName + "   "+ days);
     Axios.post("http://localhost:3001/insert" , {code : code , mealName : mealName ,price : price, discount : discount , days : days});
-    //window.location.reload(false);
+    window.location.reload(false);
   };
 
   const updateMeal = (id)=> {
@@ -88,6 +88,7 @@ function App() {
 
   const deleteMeal = (id)=> {
     Axios.delete(`http://localhost:3001/delete/${id}` );
+    window.location.reload(false);
   };
 
   return (
@@ -143,22 +144,22 @@ function App() {
                                 <td>{val.code}</td>
                                 <td>
                                 <input 
-                                type="text" value={val.mealsName}
+                                type="text" defaultValue={val.mealsName}
                                 onChange = {(event) => {setNewMealName(event.target.value);
                                 }}  />
                                 </td>
                                 <td><input 
-                                type="text" value={val.price}
+                                type="text" defaultValue={val.price}
                                 onChange = {(event) => {setNewPrice(event.target.value);
                                 }}  
                                 /></td>
                                 <td><input 
-                                type="text" value={val.discount}
+                                type="text" defaultValue={val.discount}
                                 onChange = {(event) => {setNewDiscount(event.target.value);
                                 }}  
                                 /></td>
                                 <td><input  
-                                type="text" value={val.days}
+                                type="text" defaultValue={val.days}
                                 onChange = {(event) => {setNewDay(event.target.value);
                                 }}
                                 /></td>
