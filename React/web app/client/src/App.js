@@ -116,26 +116,44 @@ function App() {
           </div>
         </CardContent>
       </Card>
-      
-        <h1>Meals List</h1>
-        {mealsList.map((val, key)=> {
-          return (
-          <div key = {key}>
-            {" "}
-            <h1> {val.mealsName }</h1>
-            <h1> {val.daysSinceIAte}</h1>
-            <input 
-              type="text" 
-              placeholder = "New meal name..." 
-              onChange = {(event) => {setNewMealName(event.target.value);
-              }}  
-              />
-            <AppButton onPress = {() => updateMeal(val._id)} title="Update" size="sm" backgroundColor="#000000" />;
-            <AppButton onPress ={() => deleteMeal(val._id)} title="Delete" size="sm" backgroundColor="#000000" />;
-            {" "}
-          </div>
-          );
-        })}
+      <br/><br/>
+      <div>
+      <Card >
+        <CardHeader title= "View Items"/>
+        <CardContent>
+          <table rules="all" >
+            <tr>
+              <th>Product Code</th>
+              <th>Meals Name</th>
+              <th>Price</th>
+              <th>Discount</th>
+              <th>Last Order</th>
+              <th>Updation</th>
+              <th>Last Order</th>
+            </tr>
+            {mealsList.map((val, key)=> {
+            return (
+            <tr key = {key}>
+              <td>{val.code}</td>
+              <td>{val.mealsName}</td>
+              <td>{val.price}</td>
+              <td>{val.discount}</td>
+              <td>{val.daysSinceIAte}</td>
+              <input 
+                type="text" 
+                placeholder = "New meal name..." 
+                onChange = {(event) => {setNewMealName(event.target.value);
+                }}  
+                />
+              <td><AppButton onPress = {() => updateMeal(val._id)} title="Update" size="sm" backgroundColor="#000000" /></td>
+              <td><AppButton onPress ={() => deleteMeal(val._id)} title="Delete" size="sm" backgroundColor="#000000" /></td>
+            </tr>
+            );
+          })}
+          </table>
+        </CardContent>
+      </Card>
+      </div>
     </div>
   );
 }
