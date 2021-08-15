@@ -27,15 +27,15 @@ function App() {
     },
     appButtonContainer: {
       width: 200,
-      height: 30,
+      height: 40,
       elevation: 8,
       backgroundColor: "#009688",
-      borderRadius: 10,
+      borderRadius: 5,
       paddingVertical: 10,
       paddingHorizontal: 12
     },
     appButtonText: {
-      fontSize: 14,
+      fontSize: 16,
       color: "#fff",
       fontWeight: "regular",
       alignSelf: "center",
@@ -79,10 +79,12 @@ function App() {
 
   const updateMeal = (id)=> {
     Axios.put("http://localhost:3001/update", {id: id, newMealName: newMealName});
+    window.location.reload(false);
   };
 
   const deleteMeal = (id)=> {
     Axios.delete(`http://localhost:3001/delete/${id}` );
+    window.location.reload(false);
   };
 
   return (
@@ -135,16 +137,26 @@ function App() {
             return (
             <tr key = {key}>
               <td>{val.code}</td>
-              <td>{val.mealsName}</td>
-              <td>{val.price}</td>
-              <td>{val.discount}</td>
-              <td>{val.daysSinceIAte}</td>
-              <input 
-                type="text" 
-                placeholder = "New meal name..." 
+              <td><input 
+                type="text" value={val.mealsName}
                 onChange = {(event) => {setNewMealName(event.target.value);
                 }}  
-                />
+                /></td>
+                <td><input 
+                type="text" value={val.price}
+                onChange = {(event) => {setNewMealName(event.target.value);
+                }}  
+                /></td>
+                <td><input 
+                type="text" value={val.discount}
+                onChange = {(event) => {setNewMealName(event.target.value);
+                }}  
+                /></td>
+                <td><input  
+                type="text" value={val.days}
+                onChange = {(event) => {setNewMealName(event.target.value);
+                }}  
+                /></td>
               <td><AppButton onPress = {() => updateMeal(val._id)} title="Update" size="sm" backgroundColor="#000000" /></td>
               <td><AppButton onPress ={() => deleteMeal(val._id)} title="Delete" size="sm" backgroundColor="#000000" /></td>
             </tr>
