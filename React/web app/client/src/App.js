@@ -74,6 +74,7 @@ function App() {
   const addToList = () =>{
     //console.log(mealName + "   "+ days);
     Axios.post("http://localhost:3001/insert" , {code : code , mealName : mealName ,price : price, discount : discount , days : days});
+    window.location.reload(false);
   };
 
   const updateMeal = (id)=> {
