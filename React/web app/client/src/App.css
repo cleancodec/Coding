@@ -20,12 +20,11 @@ label {
 
 textarea,
 input {
-  height: 40px;
-  width: 200px;
-  border-radius: 2px;
+  padding: 10px;
+  border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 16px;
-  align-content: right;
+  margin-bottom: 20px;
 }
 
 label {
@@ -43,7 +42,7 @@ button[type="submit"] {
   border: none;
   text-transform: uppercase;
   padding: 10px 20px;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 .reactSelect {
@@ -55,10 +54,8 @@ button[type="submit"] {
   display: block;
 }
 td,th{
-  align-items: center;
-  justify-content: center;
-  padding-right: 5px;
-  padding-right: 5px;
+  padding-left: 40px;
+  padding-right: 40px;
   padding-top: 10px;
   padding-bottom: 10px;
 }

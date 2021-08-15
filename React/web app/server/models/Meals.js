@@ -17,7 +17,7 @@ const MealsSchema = new mongoose.Schema({
         type : Number,
         required : true
     },
-    daysSinceIAte : {
+    days : {
         type : Number,
         required : true
     },

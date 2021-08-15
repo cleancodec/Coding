@@ -15,7 +15,11 @@ function App() {
   const [discount, setDiscount] = useState(0);
   const [days, setDays] = useState(0);
 
-  const [newMealName, setNewMealName] = useState('')
+  const [newMealName, setNewMealName] = useState('');
+  const [newPrice, setNewPrice] = useState(0);
+  const [newDiscount, setNewDiscount] = useState(0);
+  const [newDay, setNewDay] = useState(0);
+
   const [mealsList, setMealsList] = useState([])
 
 
@@ -27,15 +31,15 @@ function App() {
     },
     appButtonContainer: {
       width: 200,
-      height: 40,
+      height: 30,
       elevation: 8,
       backgroundColor: "#009688",
-      borderRadius: 5,
+      borderRadius: 10,
       paddingVertical: 10,
       paddingHorizontal: 12
     },
     appButtonText: {
-      fontSize: 16,
+      fontSize: 14,
       color: "#fff",
       fontWeight: "regular",
       alignSelf: "center",
@@ -72,19 +76,18 @@ function App() {
   }, [])
 
   const addToList = () =>{
-    //console.log(mealName + "   "+ days);
+    console.log(mealName + "   "+ days);
     Axios.post("http://localhost:3001/insert" , {code : code , mealName : mealName ,price : price, discount : discount , days : days});
-    window.location.reload(false);
+    //window.location.reload(false);
   };
 
   const updateMeal = (id)=> {
-    Axios.put("http://localhost:3001/update", {id: id, newMealName: newMealName});
+    Axios.put("http://localhost:3001/update", {id: id, newMealName: newMealName, newPrice : newPrice, newDiscount : newDiscount, newDay : newDay});
     window.location.reload(false);
   };
 
   const deleteMeal = (id)=> {
     Axios.delete(`http://localhost:3001/delete/${id}` );
-    window.location.reload(false);
   };
 
   return (
@@ -113,6 +116,7 @@ function App() {
             <label htmlFor="days ">Last Ordered</label>
             <input type = "number" placeholder="0 Days" onChange = {(event) =>{setDays(event.target.value);}}/>
           </div>
+          <br/>
           <div align="center">  
             <AppButton  onPress = {addToList} title="Add to List" size="sm" backgroundColor="#000000" />;
           </div>
@@ -120,52 +124,54 @@ function App() {
       </Card>
       <br/><br/>
       <div>
-      <Card >
-        <CardHeader title= "View Items"/>
-        <CardContent>
-          <table rules="all" >
-            <tr>
-              <th>Product Code</th>
-              <th>Meals Name</th>
-              <th>Price</th>
-              <th>Discount</th>
-              <th>Last Order</th>
-              <th>Updation</th>
-              <th>Last Order</th>
-            </tr>
-            {mealsList.map((val, key)=> {
-            return (
-            <tr key = {key}>
-              <td>{val.code}</td>
-              <td><input 
-                type="text" value={val.mealsName}
-                onChange = {(event) => {setNewMealName(event.target.value);
-                }}  
-                /></td>
-                <td><input 
-                type="text" value={val.price}
-                onChange = {(event) => {setNewMealName(event.target.value);
-                }}  
-                /></td>
-                <td><input 
-                type="text" value={val.discount}
-                onChange = {(event) => {setNewMealName(event.target.value);
-                }}  
-                /></td>
-                <td><input  
-                type="text" value={val.days}
-                onChange = {(event) => {setNewMealName(event.target.value);
-                }}  
-                /></td>
-              <td><AppButton onPress = {() => updateMeal(val._id)} title="Update" size="sm" backgroundColor="#000000" /></td>
-              <td><AppButton onPress ={() => deleteMeal(val._id)} title="Delete" size="sm" backgroundColor="#000000" /></td>
-            </tr>
-            );
-          })}
-          </table>
-        </CardContent>
-      </Card>
-      </div>
+        <Card>
+          <CardHeader title= "View Items"/>
+            <CardContent>
+            <table rules="all" >
+                        <tr>
+                            <th>Product Code</th>
+                            <th>Meals Name</th>
+                            <th>Price</th>
+                            <th>Discount</th>
+                            <th>Last Order</th>
+                            <th>Updation</th>
+                            <th>Last Order</th>
+                        </tr>
+                        {mealsList.map((val, key)=> {
+                            return (
+                              <tr key = {key}>
+                                <td>{val.code}</td>
+                                <td>
+                                <input 
+                                type="text" value={val.mealsName}
+                                onChange = {(event) => {setNewMealName(event.target.value);
+                                }}  />
+                                </td>
+                                <td><input 
+                                type="text" value={val.price}
+                                onChange = {(event) => {setNewPrice(event.target.value);
+                                }}  
+                                /></td>
+                                <td><input 
+                                type="text" value={val.discount}
+                                onChange = {(event) => {setNewDiscount(event.target.value);
+                                }}  
+                                /></td>
+                                <td><input  
+                                type="text" value={val.days}
+                                onChange = {(event) => {setNewDay(event.target.value);
+                                }}
+                                /></td>
+                                <td><AppButton onPress = {() => updateMeal(val._id)} title="Update" size="sm" backgroundColor="#000000" /></td>
+                                <td><AppButton onPress ={() => deleteMeal(val._id)} title="Delete" size="sm" backgroundColor="#000000" /></td>
+                                
+                              </tr>   
+                            );
+                            })}
+            </table>
+            </CardContent>
+        </Card>
+    </div>
     </div>
   );
 }

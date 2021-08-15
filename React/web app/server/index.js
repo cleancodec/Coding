@@ -21,7 +21,7 @@ app.post('/insert', async (req, res) => {
     const discount = req.body.discount
     const days = req.body.days
 
-    const meals = new MealsModel({code : code, mealsName : mealName, price : price, discount : discount, daysSinceIAte : days});
+    const meals = new MealsModel({code : code, mealsName : mealName, price : price, discount : discount, days : days});
     try {
         await meals.save();
         res.send("inserted data");
@@ -39,7 +39,7 @@ app.get('/read', async (req, res) => {
         {
             res.send(err);
         }
-
+        
         res.send(result);
     });
 });
