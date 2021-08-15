@@ -15,10 +15,13 @@ mongoose.connect("mongodb+srv://newuser:XTrDFPinesANPrc2@crud.dos9f.mongodb.net/
 
 app.post('/insert', async (req, res) => {
     
+    const code = req.body.code
     const mealName = req.body.mealName
+    const price = req.body.price
+    const discount = req.body.discount
     const days = req.body.days
 
-    const meals = new MealsModel({mealsName : mealName, daysSinceIAte : days});
+    const meals = new MealsModel({code : code, mealsName : mealName, price : price, discount : discount, daysSinceIAte : days});
     try {
         await meals.save();
         res.send("inserted data");

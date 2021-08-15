@@ -9,8 +9,12 @@ import CardContent from '@material-ui/core/CardContent';
 
 function App() {
 
+  const [code, setCode] = useState('');
   const [mealName, setMealName] = useState('');
+  const [price, setPrice] = useState(0);
+  const [discount, setDiscount] = useState(0);
   const [days, setDays] = useState(0);
+
   const [newMealName, setNewMealName] = useState('')
   const [mealsList, setMealsList] = useState([])
 
@@ -69,7 +73,7 @@ function App() {
 
   const addToList = () =>{
     //console.log(mealName + "   "+ days);
-    Axios.post("http://localhost:3001/insert" , {mealName : mealName , days : days});
+    Axios.post("http://localhost:3001/insert" , {code : code , mealName : mealName ,price : price, discount : discount , days : days});
   };
 
   const updateMeal = (id)=> {
@@ -88,7 +92,7 @@ function App() {
         <CardContent>
           <div>
             <label htmlFor="code ">Product Code </label>
-            <input type = "text" placeholder="######" />
+            <input type = "text" placeholder="######" onChange = {(event) =>{setCode(event.target.value);}}/>
           </div>
           <div>
             <label htmlFor="mealname ">Meal Name </label>
@@ -96,11 +100,11 @@ function App() {
           </div>
           <div>
             <label htmlFor="price ">Price </label>
-            <input type = "number" placeholder="$0.00" />
+            <input type = "number" placeholder="$0.00" onChange = {(event) =>{setPrice(event.target.value);}}/>
           </div>
           <div>
             <label htmlFor="discount ">Discount </label>
-            <input type = "number" placeholder="$0.00" />
+            <input type = "number" placeholder="$0.00" onChange = {(event) =>{setDiscount(event.target.value);}}/>
           </div>
           <div>
             <label htmlFor="days ">Last Ordered</label>
